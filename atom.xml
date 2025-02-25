@@ -6,7 +6,7 @@
   <link href="https://www.297729.xyz/atom.xml" rel="self"/>
   
   <link href="https://www.297729.xyz/"/>
-  <updated>2025-02-25T14:15:21.265Z</updated>
+  <updated>2025-02-25T14:14:10.640Z</updated>
   <id>https://www.297729.xyz/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>测试图片1</title>
+    <link href="https://www.297729.xyz/2025/02/25/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%871/"/>
+    <id>https://www.297729.xyz/2025/02/25/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%871/</id>
+    <published>2025-02-25T14:14:01.397Z</published>
+    <updated>2025-02-25T14:14:10.640Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://www.297729.xyz/images/25/2/998_62f5b68e5704bdc2071771229e95d121.jpg&quot; alt=&quot;&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="表情包" scheme="https://www.297729.xyz/categories/%E8%A1%A8%E6%83%85%E5%8C%85/"/>
+    
+    
+    <category term="美图" scheme="https://www.297729.xyz/tags/%E7%BE%8E%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="https://www.297729.xyz/2013/12/24/hello-world/"/>
     <id>https://www.297729.xyz/2013/12/24/hello-world/</id>
     <published>2013-12-24T17:49:32.000Z</published>
-    <updated>2025-02-25T14:15:21.265Z</updated>
+    <updated>2025-02-25T14:15:37.681Z</updated>
     
     
       
