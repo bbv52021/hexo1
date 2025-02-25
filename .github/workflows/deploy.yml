@@ -1,0 +1,43 @@
+name: Deploy Hexo
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install -g hexo-cli
+
+    - name: Create CNAME file
+      run: echo "www.297729.xyz" > source/CNAME  # 确保CNAME文件在正确的位置
+
+    - name: Build Hexo
+      run: hexo generate  # 生成站点
+
+    - name: Copy images to public folder
+      run: |
+        cp -r images/ public/images/  # 将 images 目录从 master 分支复制到 public 目录
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        publish_dir: ./public  # 使用public目录进行部署，Hexo会自动将CNAME文件包含进去
