@@ -27,7 +27,7 @@ jobs:
         npm install -g hexo-cli
 
     - name: Create CNAME file
-      run: echo "www.297729.xyz" > source/CNAME  # 确保CNAME文件在正确的位置
+      run: echo "www.297729.xyz" > source/CNAME  # 确保CNAME文件在正确的位置的
 
     - name: Build Hexo
       run: hexo generate  # 生成站点
