@@ -348,7 +348,9 @@ algolia_search:
 #   field: post
 #   content: true
 generator_search:
-  enable: false
+  enable: true
+  field: post
+  content: true
 
 ########################################
 # Animation
@@ -427,11 +429,11 @@ clipboard:
 
 # show categories card on home page
 home_categories:
-  enable: false
+  enable: true
   content:
-    - categories: # string (single-layer category) or array (multi-layer category)
-      cover: # empty means random cover
-    - categories:
+    - categories: [电脑]  # string (sin ...
+      cover:  # empty means random cover
+    - categories: [表情包]
       cover:
 
 # whether to display the notification when the article is outdated
