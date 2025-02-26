@@ -11,6 +11,12 @@ author: John Doe
 language: zh-CN
 timezone: ''
 
+search:
+  path: search.xml
+  field: post
+  content: true
+  template: ./search.xml
+  
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://www.297729.xyz
