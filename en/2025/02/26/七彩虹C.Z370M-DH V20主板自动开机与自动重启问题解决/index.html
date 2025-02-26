@@ -16,7 +16,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://www.297729.xyz';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
   
   <title>
-    目录: 电脑 |
+    七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决 |
     
     Hexo
   </title>
@@ -31,15 +31,21 @@
 
   
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://www.297729.xyz/categories/%E7%94%B5%E8%84%91/index.html">
+    <meta name="description" content="最近，我用七彩虹C.Z370M-DH V20主板组装了一台台式机，放在家里并希望实现远程开机的功能。为了实现这个目标，我购买了一款接入米家的PCI-E接口开机卡，并在这台台式机上安装了向日葵远程软件。这样，我可以通过米家APP在不在家的时候，遥控启动这台电脑，极大地提升了使用的便利性。 然而，在我完成一系列设置后，遇到了一个令人头疼的问题：每当我关机后，这台电脑会在关机后的几秒内自动重新启动。这显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决">
+<meta property="og:url" content="https://www.297729.xyz/en/2025/02/26/%E4%B8%83%E5%BD%A9%E8%99%B9C.Z370M-DH%20V20%E4%B8%BB%E6%9D%BF%E8%87%AA%E5%8A%A8%E5%BC%80%E6%9C%BA%E4%B8%8E%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.297729.xyz/images/banner.webp">
+<meta property="og:description" content="最近，我用七彩虹C.Z370M-DH V20主板组装了一台台式机，放在家里并希望实现远程开机的功能。为了实现这个目标，我购买了一款接入米家的PCI-E接口开机卡，并在这台台式机上安装了向日葵远程软件。这样，我可以通过米家APP在不在家的时候，遥控启动这台电脑，极大地提升了使用的便利性。 然而，在我完成一系列设置后，遇到了一个令人头疼的问题：每当我关机后，这台电脑会在关机后的几秒内自动重新启动。这显">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.297729.xyz/images1/25/2/722c9473-8833-41eb-a7f1-c060dd65e5dc_d1424dae0328730d9427118af7cf4ae1.jpg">
+<meta property="og:image" content="https://www.297729.xyz/images1/25/2/339f331e-7965-4c92-8be1-14aa6c49fd8d_bc5820e195ba2d30999e6659474bd584.jpg">
+<meta property="article:published_time" content="2025-02-26T06:38:55.141Z">
+<meta property="article:modified_time" content="2025-02-26T06:39:02.485Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="电脑">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.297729.xyz/images/banner.webp">
+<meta name="twitter:image" content="https://www.297729.xyz/images1/25/2/722c9473-8833-41eb-a7f1-c060dd65e5dc_d1424dae0328730d9427118af7cf4ae1.jpg">
   
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -125,28 +131,28 @@
           <div class="main-nav-icon icon rotate">
             &#xe62b;
           </div>
-          <a class="main-nav-link" href="/">首页</a>
+          <a class="main-nav-link" href="/en/">Home</a>
         </span>
       
         <span class="main-nav-link-wrap">
           <div class="main-nav-icon icon rotate">
             &#xe62b;
           </div>
-          <a class="main-nav-link" href="/archives">归档</a>
+          <a class="main-nav-link" href="/en/archives">Archives</a>
         </span>
       
         <span class="main-nav-link-wrap">
           <div class="main-nav-icon icon rotate">
             &#xe62b;
           </div>
-          <a class="main-nav-link" href="/about">关于</a>
+          <a class="main-nav-link" href="/en/about">About</a>
         </span>
       
         <span class="main-nav-link-wrap">
           <div class="main-nav-icon icon rotate">
             &#xe62b;
           </div>
-          <a class="main-nav-link" href="/friend">友链</a>
+          <a class="main-nav-link" href="/en/friend">Friend</a>
         </span>
       
     
@@ -154,11 +160,11 @@
   </nav>
   <nav id="sub-nav">
     
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" target="_blank"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
     
     
     
-      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="Search"></a>
     
   </nav>
   
@@ -167,13 +173,13 @@
       <div class="custom-dropdown">
         <div class="select-selected" id="select-selected">
           <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
-          <span id="selected-lang">简体中文</span>
+          <span id="selected-lang">English</span>
         </div>
         <ul class="select-items" id="select-items">
           
-            <li data-value="zh-CN" class="selected">简体中文</li>
+            <li data-value="zh-CN" >简体中文</li>
           
-            <li data-value="en" >English</li>
+            <li data-value="en" class="selected">English</li>
           
         </ul>
       </div>
@@ -191,9 +197,9 @@
           item.addEventListener("click", () => {
             const langMap = {};
             
-              langMap['zh-CN'] = '/categories/电脑/index.html';
+              langMap['zh-CN'] = '/2025/02/26/七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决/';
             
-              langMap['en'] = '/en/categories/电脑/index.html';
+              langMap['en'] = '/en/2025/02/26/七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决/';
             
             selectedLang.textContent = item.textContent;
             selectItems.classList.remove("show");
@@ -216,12 +222,8 @@
 </div>
 <header id="header">
   
-    <picture>
-      
-    </picture>
-    
-      <img fetchpriority="high" src="/images/banner.webp" alt="">
-    
+    <picture></picture>
+    <img fetchpriority="high" src="https://www.297729.xyz/images1/25/2/722c9473-8833-41eb-a7f1-c060dd65e5dc_d1424dae0328730d9427118af7cf4ae1.jpg" alt="七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决">
   
   <div id="header-outer">
     <div id="header-title">
@@ -229,15 +231,13 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">分类</h1>
+            <h1 data-aos="slide-up">七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决</h1>
           </a>
         
       
       
         
         <h2 id="subtitle-wrap" data-aos="slide-down">
-          
-            <a href="/" id="subtitle">电脑</a>
           
         </h2>
       
@@ -249,25 +249,34 @@
           <aside id="sidebar">
   
   
-  <div class="sidebar-wrapper ">
+  <div class="sidebar-wrapper wrap-sticky">
     <div class="sidebar-wrap" data-aos="fade-up">
       
-        <div class="sidebar-author">
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text"> 总结与建议</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="John Doe" class="lazyload">
   <div class="sidebar-author-name">John Doe</div>
   <div class="sidebar-description"></div>
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div>
+    <div>Post</div>
     <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
-    <div>分类</div>
+    <div>Category</div>
     <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-tag">
-    <div>标签</div>
+    <div>Tag</div>
     <div class="sidebar-state-number">4</div>
   </div>
 </div>
@@ -278,41 +287,46 @@
   
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
         <div class="sidebar-menu-icon icon rotate">
           &#xe62b;
         </div>
-        <div class="sidebar-menu-link">首页</div>
+        <div class="sidebar-menu-link">Home</div>
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
         <div class="sidebar-menu-icon icon rotate">
           &#xe62b;
         </div>
-        <div class="sidebar-menu-link">归档</div>
+        <div class="sidebar-menu-link">Archives</div>
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
         <div class="sidebar-menu-icon icon rotate">
           &#xe62b;
         </div>
-        <div class="sidebar-menu-link">关于</div>
+        <div class="sidebar-menu-link">About</div>
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
         <div class="sidebar-menu-icon icon rotate">
           &#xe62b;
         </div>
-        <div class="sidebar-menu-link">友链</div>
+        <div class="sidebar-menu-link">Friend</div>
       </div>
     
   
 </div>
-
+</div>
       
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
       
     </div>
   </div>
@@ -322,88 +336,84 @@
   </div>
 </aside>
 
-          <section id="main">
-<div class="archives-outer-wrap" data-aos="fade-up">
-  <div class="tag-wrap">
-    
-      <div class="archives-tag-list-item" data-aos="zoom-in">
-        <a class="archives-tag-list-link" href="/tags/%E7%94%B5%E8%84%91/">电脑</a>
-      </div>
-    
-      <div class="archives-tag-list-item" data-aos="zoom-in">
-        <a class="archives-tag-list-link" href="/tags/%E7%BE%8E%E5%9B%BE/">美图</a>
-      </div>
-    
-      <div class="archives-tag-list-item" data-aos="zoom-in">
-        <a class="archives-tag-list-link" href="/tags/%E7%BE%8E%E5%A5%B3/">美女</a>
-      </div>
-    
-      <div class="archives-tag-list-item" data-aos="zoom-in">
-        <a class="archives-tag-list-link" href="/tags/oranot%E5%A5%A5%E5%85%B0%E8%AF%BA%E6%97%97%E8%88%B0%E5%BA%97/">oranot奥兰诺旗舰店</a>
-      </div>
-    
-  </div>
-  <div class="category-wrap">
-    
-      <div class="archives-category-list-item" data-aos="zoom-in">
-        <a class="archives-category-list-link" href="/categories/%E7%94%B5%E8%84%91/">电脑</a>
-      </div>
-    
-      <div class="archives-category-list-item" data-aos="zoom-in">
-        <a class="archives-category-list-link" href="/categories/%E8%A1%A8%E6%83%85%E5%8C%85/">表情包</a>
-      </div>
-    
-      <div class="archives-category-list-item" data-aos="zoom-in">
-        <a class="archives-category-list-link" href="/categories/%E9%A6%99%E8%96%B0%E9%A6%99%E6%96%99/">香薰香料</a>
-      </div>
-    
-  </div>
-  
-    
-    
-    
-      
-      
-        
-        
-        <section class="archives-wrap" data-aos="fade-up">
-          <div class="archive-year-wrap">
-            <a href="/archives/2025" class="archive-year">2025</a>
-          </div>
-          <ul>
-            
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <span>
-      <time class="dt-published" datetime="2025-02-26T06:38:55.141Z" itemprop="datePublished">02-26</time>
-    </span>
-  </div>
-  
-    <a class="archive-article-title" href="/2025/02/26/%E4%B8%83%E5%BD%A9%E8%99%B9C.Z370M-DH%20V20%E4%B8%BB%E6%9D%BF%E8%87%AA%E5%8A%A8%E5%BC%80%E6%9C%BA%E4%B8%8E%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决</a>
-  
-</li>
+          <section id="main"><article id="post-七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-02-26T06:38:55.141Z" itemprop="datePublished">2025-02-26</time>
+    <time style="display: none;" id="post-update-time">2025-02-26</time>
+  </span>
+</div>
 
-            
       
-      
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <span>
-      <time class="dt-published" datetime="2025-02-25T14:39:40.967Z" itemprop="datePublished">02-25</time>
-    </span>
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/%E7%94%B5%E8%84%91/" data-aos="zoom-in">电脑</a>
   </div>
-  
-    <a class="archive-article-title" href="/2025/02/25/%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%8B5/">测试一下5</a>
-  
-</li>
 
-            
-            
-          </ul>
-        </section>
+
+    </div>
+    <div class="hr-line"></div>
     
-  
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <p>最近，我用七彩虹C.Z370M-DH V20主板组装了一台台式机，放在家里并希望实现远程开机的功能。为了实现这个目标，我购买了一款接入米家的PCI-E接口开机卡，并在这台台式机上安装了向日葵远程软件。这样，我可以通过米家APP在不在家的时候，遥控启动这台电脑，极大地提升了使用的便利性。</p>
+<p>然而，在我完成一系列设置后，遇到了一个令人头疼的问题：每当我关机后，这台电脑会在关机后的几秒内自动重新启动。这显然不符合我的预期，尤其是在我尝试让它在关机时保持关闭状态时，问题依然存在。</p>
+<p>我首先检查了主板的BIOS设置，进入了“电源管理”部分，在“交流电恢复后处理”选项中，将其设置为“关机”。但每次关机后，电脑仍然会自动重新启动。为了寻找问题的根源，我开始查阅相关资料，然而在网上找到的解决方案并没有解决我的问题。<br />
+<img src="https://www.297729.xyz/images1/25/2/722c9473-8833-41eb-a7f1-c060dd65e5dc_d1424dae0328730d9427118af7cf4ae1.jpg" alt="" /></p>
+<p><img src="https://www.297729.xyz/images1/25/2/339f331e-7965-4c92-8be1-14aa6c49fd8d_bc5820e195ba2d30999e6659474bd584.jpg" alt="" />经过一段时间的摸索，我意识到主板上的“EUP”功能可能与此问题有关。EUP是一个电源管理选项，主要控制关机后的电力消耗。如果这个功能被启用，它可能会影响主板在关机状态下的供电，进而导致电脑自动重启。</p>
+<p>于是，我进入BIOS，将“EUP”功能关闭。结果，关机后电脑终于没有再自动重启，问题得以解决。这样一来，我的台式机能够正常关机，并且不再因为设置问题自动启动。</p>
+<h3 id="总结与建议"><a class="markdownIt-Anchor" href="#总结与建议"></a> 总结与建议</h3>
+<ol>
+<li><strong>自动开机功能：</strong> 通过安装米家PCI-E接口开机卡并结合向日葵远程软件，成功实现了远程开机功能，可以随时通过米家APP启动电脑。</li>
+<li><strong>解决自动重启问题：</strong> 如果你的电脑在关机后自动重启，可能是由于主板上的“EUP”功能开启，导致关机时电力消耗不完全。关闭这个选项即可避免自动重启。</li>
+</ol>
+<p>通过这种方式，我不仅能够远程控制开机，还能确保电脑在关机时不会无缘无故地重启，操作简单且非常实用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/%E7%94%B5%E8%84%91/" rel="tag">电脑</a></li></ul>
+
+
+    </footer>
   </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="https://www.297729.xyz/images1/25/2/屏幕截图_24-2-2025_212541_192.168.68.169_844e0f319470e714682aedfe77251564.jpeg" data-sizes="auto" alt="测试一下5" class="lazyload">
+      
+      <a href="/en/2025/02/25/%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%8B5/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          测试一下5
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
 
 
 
@@ -463,22 +473,31 @@
       <nav id="mobile-nav">
   <div class="sidebar-wrap">
     
-      <div class="sidebar-author">
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text"> 总结与建议</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="John Doe" class="lazyload">
   <div class="sidebar-author-name">John Doe</div>
   <div class="sidebar-description"></div>
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div>
+    <div>Post</div>
     <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
-    <div>分类</div>
+    <div>Category</div>
     <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-tag">
-    <div>标签</div>
+    <div>Tag</div>
     <div class="sidebar-state-number">4</div>
   </div>
 </div>
@@ -489,42 +508,47 @@
   
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
         <div class="sidebar-menu-icon icon rotate">
           &#xe62b;
         </div>
-        <div class="sidebar-menu-link">首页</div>
+        <div class="sidebar-menu-link">Home</div>
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
         <div class="sidebar-menu-icon icon rotate">
           &#xe62b;
         </div>
-        <div class="sidebar-menu-link">归档</div>
+        <div class="sidebar-menu-link">Archives</div>
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
         <div class="sidebar-menu-icon icon rotate">
           &#xe62b;
         </div>
-        <div class="sidebar-menu-link">关于</div>
+        <div class="sidebar-menu-link">About</div>
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
         <div class="sidebar-menu-icon icon rotate">
           &#xe62b;
         </div>
-        <div class="sidebar-menu-link">友链</div>
+        <div class="sidebar-menu-link">Friend</div>
       </div>
     
   
 </div>
-
+</div>
     
   </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
   
 </nav>
 
@@ -609,11 +633,69 @@
 
 <div id="lazy-script">
   <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "John Doe",
+          title: "七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决",
+          url: "https://www.297729.xyz/2025/02/26/%E4%B8%83%E5%BD%A9%E8%99%B9C.Z370M-DH%20V20%E4%B8%BB%E6%9D%BF%E8%87%AA%E5%8A%A8%E5%BC%80%E6%9C%BA%E4%B8%8E%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/",
+          excerpt: "",
+          description: "",
+          stripContent: "最近，我用七彩虹C.Z370M-DH V20主板组装了一台台式机，放在家里并希望实现远程开机的功能。为了实现这个目标，我购买了一款接入米家的PCI-E接口开机卡，并在这台台式机上安装了向日葵远程软件。这样，我可以通过米家APP在不在家的时候，遥控启动这台电脑，极大地提升了使用的便利性。 然而，在我完成一系列设置后，遇到了一个令人头疼的问题：每当我关机后，这台电脑会在关机后的几秒内自动重新启动。这显然不符合我的预期，尤其是在我尝试让它在关机时保持关闭状态时，问题依然存在。 我首先检查了主板的BIO",
+          date: "Wed Feb 26 2025 06:38:55 GMT+0000",
+          updated: "Wed Feb 26 2025 06:39:02 GMT+0000",
+          cover: "https://www.297729.xyz/images1/25/2/722c9473-8833-41eb-a7f1-c060dd65e5dc_d1424dae0328730d9427118af7cf4ae1.jpg",
+        };
+      </script>
        
     
     
       
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
     
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+
+
+
+
+
+
+
+
     
   </div>
 </div>
