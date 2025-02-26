@@ -348,7 +348,9 @@ algolia_search:
 #   field: post
 #   content: true
 generator_search:
-  enable: false
+  enable: true
+  field: post
+  content: true
 
 ########################################
 # Animation
