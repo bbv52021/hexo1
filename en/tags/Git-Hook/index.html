@@ -1,0 +1,700 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://www.297729.xyz';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    Tag: Git Hook |
+    
+    JW_D的个人微博
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="这是我的个人博客，用来记录生活和学习的点滴。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JW_D的个人微博">
+<meta property="og:url" content="https://www.297729.xyz/en/tags/Git-Hook/index.html">
+<meta property="og:site_name" content="JW_D的个人微博">
+<meta property="og:description" content="这是我的个人博客，用来记录生活和学习的点滴。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.297729.xyz/images/banner.webp">
+<meta property="article:author" content="JW_D">
+<meta property="article:tag" content="博客, 个人, 学习, 生活">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.297729.xyz/images/banner.webp">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="JW_D的个人微博" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      <div class="loading-word">急急如律令...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/en/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/en/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/en/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/en/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="Search"></a>
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/tags/Git-Hook/index.html';
+            
+              langMap['en'] = '/en/tags/Git-Hook/index.html';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    <picture>
+      
+    </picture>
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Tags</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+            <a href="/" id="subtitle">Git Hook</a>
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  <div class="sidebar-wrapper ">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="JW_D" class="lazyload">
+  <div class="sidebar-author-name">JW_D</div>
+  <div class="sidebar-description">这是我的个人博客，用来记录生活和学习的点滴。</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">48</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+
+      
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+</aside>
+
+          <section id="main">
+<div class="archives-outer-wrap" data-aos="fade-up">
+  <div class="tag-wrap">
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E5%A4%96%E7%94%A8%E5%BB%B6%E6%97%B6%E8%86%8F/">外用延时膏</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E5%A4%9A%E5%8A%9F%E8%83%BD%E8%87%AA%E6%85%B0%E6%9D%AF-%E9%A3%9E%E6%9C%BA%E6%9D%AF/">多功能自慰杯/飞机杯</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E7%A7%81%E5%A4%84%E6%8A%A4%E7%90%86/">私处护理</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E7%94%B7%E7%94%A8%E8%BD%AF%E8%83%B6-%E8%BD%AF%E8%83%B6%E6%9D%AF/">男用软胶/软胶杯</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E7%94%B5%E8%84%91/">电脑</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E5%90%B8%E7%AE%A1%E6%9D%AF/">吸管杯</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E7%94%B5%E5%8A%A8-%E9%81%A5%E6%8E%A7%E9%A3%9E%E6%9C%BA/">电动/遥控飞机</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E9%A3%9E%E6%9C%BA%E6%A8%A1%E5%9E%8B/">飞机模型</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E5%85%BB%E7%94%9F%E5%A3%B6-%E7%85%8E%E8%8D%AF%E5%A3%B6-%E5%85%BB%E7%94%9F%E6%9D%AF/">养生壶/煎药壶/养生杯</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E7%94%B5%E7%83%AD%E6%B0%B4%E5%A3%B6/">电热水壶</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E7%94%B7%E7%94%A8%E5%90%AE%E5%90%B8%E6%9D%AF-%E9%9C%87%E5%8A%A8%E6%9D%AF/">男用吮吸杯/震动杯</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E5%84%BF%E7%AB%A5%E6%B0%B4%E6%9D%AF/">儿童水杯</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E8%88%AA%E6%A8%A1-%E7%9B%B4%E5%8D%87%E6%9C%BA-%E9%A3%9E%E6%9C%BA%E6%A8%A1%E5%9E%8B/">航模/直升机/飞机模型</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E6%B6%A6%E6%BB%91%E5%89%82/">润滑剂</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E4%BA%BA%E7%89%A9-%E4%BC%A0%E8%AE%B0%E5%85%B6%E5%AE%83/">人物/传记其它</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/%E8%BD%A6%E8%BD%BD%E5%86%B0%E7%AE%B1-%E4%BF%9D%E6%B8%A9%E7%AE%B1/">车载冰箱/保温箱</a>
+      </div>
+    
+      <div class="archives-tag-list-item" data-aos="zoom-in">
+        <a class="archives-tag-list-link" href="/en/tags/Git-Hook/">Git Hook</a>
+      </div>
+    
+  </div>
+  <div class="category-wrap">
+    
+      <div class="archives-category-list-item" data-aos="zoom-in">
+        <a class="archives-category-list-link" href="/en/categories/%E6%B7%98%E5%AE%9D%E5%A4%A9%E7%8C%AB%E5%95%86%E5%93%81%E9%A2%86%E9%9A%90%E8%97%8F%E5%88%B8/">淘宝天猫商品领隐藏券</a>
+      </div>
+    
+      <div class="archives-category-list-item" data-aos="zoom-in">
+        <a class="archives-category-list-link" href="/en/categories/%E7%94%B5%E8%84%91%E6%95%B0%E7%A0%81%E7%8E%A9%E6%9C%BA%E7%BB%8F%E9%AA%8C/">电脑数码玩机经验</a>
+      </div>
+    
+      <div class="archives-category-list-item" data-aos="zoom-in">
+        <a class="archives-category-list-link" href="/en/categories/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/">个人网站</a>
+      </div>
+    
+  </div>
+  
+    
+    
+    
+      
+      
+        
+        
+        <section class="archives-wrap" data-aos="fade-up">
+          <div class="archive-year-wrap">
+            <a href="/en/archives/2025" class="archive-year">2025</a>
+          </div>
+          <ul>
+            
+            <li class="archive-article">
+  <div class="archive-article-date-wrap">
+    <span>
+      <time class="dt-published" datetime="2025-02-27T03:45:28.033Z" itemprop="datePublished">02-27</time>
+    </span>
+  </div>
+  
+    <a class="archive-article-title" href="/en/2025/02/27/%E5%AE%9E%E7%8E%B0%E6%AF%8F%E6%AC%A1%E4%BF%AE%E6%94%B9%E5%AE%8C%E6%9C%AC%E5%9C%B0%E7%9A%84%20Hexo%20%E5%90%8E%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%20main%20%E5%88%86%E6%94%AF/">实现每次修改完本地的 Hexo 后自动推送到远程 main 分支</a>
+  
+</li>
+
+            
+            
+          </ul>
+        </section>
+    
+  
+  </div>
+
+
+
+</section>
+        </div>
+        
+        
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep rotate"></span>
+      JW_D
+    </div>
+    
+      <div>
+        </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        11.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:50
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="JW_D" class="lazyload">
+  <div class="sidebar-author-name">JW_D</div>
+  <div class="sidebar-description">这是我的个人博客，用来记录生活和学习的点滴。</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">48</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+
+    
+  </div>
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.0/dist/index.umd.js" integrity="sha384-KM6i7tu43nYd6e0beIljxHMC5tZc58XBDu7pPA58w50h18Jsx7gLdimfS09RXlKv" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+       
+    
+    
+      
+    
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.5.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+  </body>
+  </html>
+

@@ -1,0 +1,812 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","copyright":{"enable":false,"count":50,"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！"}};window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://www.297729.xyz';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    实现每次修改完本地的 Hexo 后自动推送到远程 main 分支 |
+    
+    JW_D的个人微博
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="实现每次修改完本地的 Hexo 后自动推送到远程 main 分支  方法 1：使用 Git Hook（本地自动化） Git 提供了 Hook 功能，可以在特定事件（如提交）发生时自动执行脚本。你可以利用这个功能，在每次提交后自动推送到远程仓库。   步骤 1：创建 Git Hook 脚本   进入 Hexo 项目的 .git&#x2F;hooks 目录： bash 复制 1cd &#x2F;volume1&#x2F;dock">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现每次修改完本地的 Hexo 后自动推送到远程 main 分支">
+<meta property="og:url" content="https://www.297729.xyz/en/2025/02/27/%E5%AE%9E%E7%8E%B0%E6%AF%8F%E6%AC%A1%E4%BF%AE%E6%94%B9%E5%AE%8C%E6%9C%AC%E5%9C%B0%E7%9A%84%20Hexo%20%E5%90%8E%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%20main%20%E5%88%86%E6%94%AF/index.html">
+<meta property="og:site_name" content="JW_D的个人微博">
+<meta property="og:description" content="实现每次修改完本地的 Hexo 后自动推送到远程 main 分支  方法 1：使用 Git Hook（本地自动化） Git 提供了 Hook 功能，可以在特定事件（如提交）发生时自动执行脚本。你可以利用这个功能，在每次提交后自动推送到远程仓库。   步骤 1：创建 Git Hook 脚本   进入 Hexo 项目的 .git&#x2F;hooks 目录： bash 复制 1cd &#x2F;volume1&#x2F;dock">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-02-27T03:45:28.033Z">
+<meta property="article:modified_time" content="2025-02-27T03:45:29.853Z">
+<meta property="article:author" content="JW_D">
+<meta property="article:tag" content="Git Hook">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="JW_D的个人微博" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      <div class="loading-word">急急如律令...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/en/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/en/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/en/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+            &#xe62b;
+          </div>
+          <a class="main-nav-link" href="/en/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="Search"></a>
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2025/02/27/实现每次修改完本地的 Hexo 后自动推送到远程 main 分支/';
+            
+              langMap['en'] = '/en/2025/02/27/实现每次修改完本地的 Hexo 后自动推送到远程 main 分支/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    <picture>
+      
+    </picture>
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="实现每次修改完本地的 Hexo 后自动推送到远程 main 分支">
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">实现每次修改完本地的 Hexo 后自动推送到远程 main 分支</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AF%8F%E6%AC%A1%E4%BF%AE%E6%94%B9%E5%AE%8C%E6%9C%AC%E5%9C%B0%E7%9A%84-hexo-%E5%90%8E%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B-main-%E5%88%86%E6%94%AF"><span class="toc-number">1.</span> <span class="toc-text"> 实现每次修改完本地的 Hexo 后自动推送到远程 main 分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%E4%BD%BF%E7%94%A8-git-hook%E6%9C%AC%E5%9C%B0%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text"> 方法 1：使用 Git Hook（本地自动化）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%E5%88%9B%E5%BB%BA-git-hook-%E8%84%9A%E6%9C%AC"><span class="toc-number">1.2.</span> <span class="toc-text"> 步骤 1：创建 Git Hook 脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 步骤 2：测试自动推送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.4.</span> <span class="toc-text"> 注意事项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text"> 总结</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="JW_D" class="lazyload">
+  <div class="sidebar-author-name">JW_D</div>
+  <div class="sidebar-description">这是我的个人博客，用来记录生活和学习的点滴。</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">48</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+</aside>
+
+          <section id="main"><article id="post-实现每次修改完本地的 Hexo 后自动推送到远程 main 分支" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-02-27T03:45:28.033Z" itemprop="datePublished">2025-02-27</time>
+    <time style="display: none;" id="post-update-time">2025-02-27</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/" data-aos="zoom-in">个人网站</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h3 id="实现每次修改完本地的-hexo-后自动推送到远程-main-分支"><a class="markdownIt-Anchor" href="#实现每次修改完本地的-hexo-后自动推送到远程-main-分支"></a> <strong>实现每次修改完本地的 Hexo 后自动推送到远程 main 分支</strong></h3>
+<h4 id="方法-1使用-git-hook本地自动化"><a class="markdownIt-Anchor" href="#方法-1使用-git-hook本地自动化"></a> <strong>方法 1：使用 Git Hook（本地自动化）</strong></h4>
+<p>Git 提供了 Hook 功能，可以在特定事件（如提交）发生时自动执行脚本。你可以利用这个功能，在每次提交后自动推送到远程仓库。</p>
+<hr />
+<h4 id="步骤-1创建-git-hook-脚本"><a class="markdownIt-Anchor" href="#步骤-1创建-git-hook-脚本"></a> <strong>步骤 1：创建 Git Hook 脚本</strong></h4>
+<ol>
+<li>
+<p>进入 Hexo 项目的 <code>.git/hooks</code> 目录：<br />
+bash</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /volume1/docker/hexo1/.git/hooks</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>创建一个 <code>post-commit</code> 钩子脚本：<br />
+bash</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi post-commit</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在脚本中添加以下内容：<br />
+bash</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"># 自动推送到远程 main 分支</span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>保存并退出。</p>
+</li>
+<li>
+<p>赋予脚本执行权限：<br />
+bash</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x post-commit</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr />
+<h4 id="步骤-2测试自动推送"><a class="markdownIt-Anchor" href="#步骤-2测试自动推送"></a> <strong>步骤 2：测试自动推送</strong></h4>
+<ol>
+<li>
+<p>在 Hexo 项目中修改文件并提交：<br />
+bash</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;测试自动推送&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>提交后，Git 会自动执行 <code>post-commit</code> 钩子脚本，将更改推送到远程 <code>main</code> 分支。</p>
+</li>
+</ol>
+<hr />
+<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> <strong>注意事项</strong></h4>
+<ol>
+<li><strong>确保远程仓库已配置</strong>：
+<ul>
+<li>
+<p>在运行脚本之前，确保本地仓库已正确配置远程仓库：<br />
+bash</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>如果未配置远程仓库，可以使用以下命令添加：<br />
+bash</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/bbv52021/hexo1.git</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><strong>Git Hook 的局限性</strong>：
+<ul>
+<li>Git Hook 是本地脚本，仅在本地生效。</li>
+<li>如果你在多台设备上工作，需要在每台设备上配置相同的 Hook 脚本。</li>
+</ul>
+</li>
+<li><strong>避免无限循环</strong>：
+<ul>
+<li>如果 <code>post-commit</code> 脚本中包含了提交操作（如 <code>git commit</code>），可能会导致无限循环。确保脚本仅包含推送操作。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> <strong>总结</strong></h3>
+<p>通过配置 <code>post-commit</code> Git Hook，你可以在本地修改文件并提交后，自动将更改推送到远程 <code>main</code> 分支，而无需手动输入命令。</p>
+<p>按照以上步骤操作，即可实现本地修改后自动推送的功能。如果仍有问题，请随时告诉我！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/Git-Hook/" rel="tag">Git Hook</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="https://www.297729.xyz/images1/25/2/722c9473-8833-41eb-a7f1-c060dd65e5dc_d1424dae0328730d9427118af7cf4ae1.jpg" data-sizes="auto" alt="七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决" class="lazyload">
+      
+      <a href="/en/2025/02/26/%E4%B8%83%E5%BD%A9%E8%99%B9C.Z370M-DH%20V20%E4%B8%BB%E6%9D%BF%E8%87%AA%E5%8A%A8%E5%BC%80%E6%9C%BA%E4%B8%8E%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          七彩虹C.Z370M-DH V20主板自动开机与自动重启问题解决
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+</section>
+        </div>
+        
+        
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      2020-2025
+      <span class="footer-info-sep rotate"></span>
+      JW_D
+    </div>
+    
+      <div>
+        </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        11.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:50
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AF%8F%E6%AC%A1%E4%BF%AE%E6%94%B9%E5%AE%8C%E6%9C%AC%E5%9C%B0%E7%9A%84-hexo-%E5%90%8E%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B-main-%E5%88%86%E6%94%AF"><span class="toc-number">1.</span> <span class="toc-text"> 实现每次修改完本地的 Hexo 后自动推送到远程 main 分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%E4%BD%BF%E7%94%A8-git-hook%E6%9C%AC%E5%9C%B0%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text"> 方法 1：使用 Git Hook（本地自动化）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%E5%88%9B%E5%BB%BA-git-hook-%E8%84%9A%E6%9C%AC"><span class="toc-number">1.2.</span> <span class="toc-text"> 步骤 1：创建 Git Hook 脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81"><span class="toc-number">1.3.</span> <span class="toc-text"> 步骤 2：测试自动推送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.4.</span> <span class="toc-text"> 注意事项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.</span> <span class="toc-text"> 总结</span></a></li></ol>
+      
+  </div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="JW_D" class="lazyload">
+  <div class="sidebar-author-name">JW_D</div>
+  <div class="sidebar-description">这是我的个人博客，用来记录生活和学习的点滴。</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">48</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          &#xe62b;
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.0/dist/index.umd.js" integrity="sha384-KM6i7tu43nYd6e0beIljxHMC5tZc58XBDu7pPA58w50h18Jsx7gLdimfS09RXlKv" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "JW_D",
+          title: "实现每次修改完本地的 Hexo 后自动推送到远程 main 分支",
+          url: "https://www.297729.xyz/2025/02/27/%E5%AE%9E%E7%8E%B0%E6%AF%8F%E6%AC%A1%E4%BF%AE%E6%94%B9%E5%AE%8C%E6%9C%AC%E5%9C%B0%E7%9A%84%20Hexo%20%E5%90%8E%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%20main%20%E5%88%86%E6%94%AF/",
+          excerpt: "",
+          description: "",
+          stripContent: " 实现每次修改完本地的 Hexo 后自动推送到远程 main 分支  方法 1：使用 Git Hook（本地自动化） Git 提供了 Hook 功能，可以在特定事件（如提交）发生时自动执行脚本。你可以利用这个功能，在每次提交后自动推送到远程仓库。   步骤 1：创建 Git Hook 脚本   进入 Hexo 项目的 .git/hooks 目录： bash 复制 1cd /volume1/docker/hexo1/.git/hooks   创建一个 post-commit 钩子脚本： bash ",
+          date: "Thu Feb 27 2025 11:45:28 GMT+0800",
+          updated: "Thu Feb 27 2025 11:45:29 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+
+
+
+
+
+
+
+
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.5.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+  </body>
+  </html>
+
