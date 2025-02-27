@@ -1,7 +1,7 @@
 ---
 abbrlink: EUP影响主板自动开关机
 categories:
-- - 电脑
+- - 电脑数码玩机经验
 comments: null
 copyright: null
 cover: https://www.297729.xyz/images1/25/2/722c9473-8833-41eb-a7f1-c060dd65e5dc_d1424dae0328730d9427118af7cf4ae1.jpg
