@@ -431,9 +431,9 @@ clipboard:
 home_categories:
   enable: true
   content:
-    - categories: [电脑]  # string (sin ...
+    - categories: [淘宝天猫商品领隐藏券]  # string (sin ...
       cover:  # empty means random cover
-    - categories: [表情包]
+    - categories: [电脑数码玩机经验]
       cover:
 
 # whether to display the notification when the article is outdated
