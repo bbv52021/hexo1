@@ -1,4 +1,4 @@
-# reimu-template
+# reimu-template²âÊÔ
 
 <img alt="theme version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FD-Sketon%2Freimu-template%2Frefs%2Fheads%2Fmain%2Fpackage.json&query=%24.dependencies.hexo-theme-reimu&label=theme version">
 
