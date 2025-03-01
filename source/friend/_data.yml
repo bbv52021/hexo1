@@ -1,12 +1,40 @@
-- name: 淘个宝
+- name: 淘宝专属
   url: https://s.click.taobao.com/8fj5ZOs
   desc: 购物-猜你喜欢
   image: https://www.297729.xyz/avatar/avatar.webp
-- name: 淘宝+拼多多+唯品会搜券
+- name: 淘宝-拼多多-唯品会
   url: https://taotao.297729.xyz
-  desc: 购物-猜你喜欢
+  desc: 购物-多平台领券
   image: https://www.297729.xyz/avatar/avat
-- name: 淘宝+拼多多+唯品会搜券
-  url: https://taotao.297729.xyz
-  desc: 购物-猜你喜欢
+- name: 淘宝-9.9包邮
+  url: https://tao.297729.xyz/9.html
+  desc: 购物-便宜低价
+  image: https://www.297729.xyz/avat
+- name: 淘宝-百亿补贴
+  url: https://tao.297729.xyz/bybt.html
+  desc: 购物-全网低价
+  image: https://www.297729.xyz/avat
+- name: 淘宝-整点抢购
+  url: https://tao.297729.xyz/ddq.html
+  desc: 购物-现时抢购
+  image: https://www.297729.xyz/avat
+- name: 淘宝-福利清单
+  url: https://tao.297729.xyz/flqd.html
+  desc: 购物-每日爆品清单
+  image: https://www.297729.xyz/avat
+- name: 淘宝-疯抢榜
+  url: https://tao.297729.xyz/fqb.html
+  desc: 购物-试试疯抢榜
+  image: https://www.297729.xyz/avat
+- name: 淘宝-线报中心
+  url: https://tao.297729.xyz/xb.html
+  desc: 购物-真人线报
+  image: https://www.297729.xyz/avat
+- name: 淘宝-小编精选
+  url: https://tao.297729.xyz/xbjx.html
+  desc: 购物-小编实时更新
+  image: https://www.297729.xyz/avat
+- name: 淘宝-折上折
+  url: https://tao.297729.xyz/zsz.html
+  desc: 购物-每日巨折产品
   image: https://www.297729.xyz/avat
